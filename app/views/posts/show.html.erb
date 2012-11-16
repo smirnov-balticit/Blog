@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+<h1> <%= @post.title %> </h1>
+<b>Posted by:</b> <%= link_to @post.user.name, @post.user %> |
+<b>Categories:</b>
+<% @post.categories.each do |category|%>
+	| <%= category.name %>  
+<% end %> |
+<% if current_user == @post.user%>
+  <%= link_to 'Edit post', edit_post_path(@post) %><br>
+<% end %>
+<br>
+<%= @post.content %>
+<br><br>
+<%= link_to 'Back', posts_path %><br><br>
+<%= render 'comments' %>
+   

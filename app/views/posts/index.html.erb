@@ -1,0 +1,17 @@
+<% if @posts.empty? %>
+        Welcome to My blog!<br>
+        Posts are not created yet.<br>
+<% else %>
+<% @posts.each do |post| %>
+  <h2>
+    <%= link_to post.title, post %>
+  </h2>
+  <% if current_user == post.user %>
+  <%= link_to 'Edit', edit_post_path(post) %><br>
+  <br>
+<% end %>
+<p><%= post.content %></p><br>
+<b>Posted by:</b> <%= link_to post.user.name, post.user %> <%= time_ago_in_words(post.created_at) %> ago.<br><br>
+<% end %>
+<%= will_paginate %>
+<% end %>
